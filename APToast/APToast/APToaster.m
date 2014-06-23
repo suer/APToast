@@ -54,12 +54,11 @@ static NSTimeInterval _apToasterAnimationDuration = 0.2f;
     toast.delegate = self;
     toast.completionBlock = completion;
     
-    if (!self.toasts.count) {
-        // toast queue empty, start it immediately
-        //
-        [self showToast:toast];
+    if (self.toasts.count) {
+        [self hideToast:self.toasts[0] animated:true];
     }
     
+    [self showToast:toast];
     [self.toasts addObject:toast];
     
     return toast.toastID;
